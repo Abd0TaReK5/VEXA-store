@@ -19,7 +19,7 @@ class PermissionSeeder extends Seeder
         
         $permissions=[
 
-            'show settings', 'show blogs', 'edit blogs', 'add blogs'
+            'show settings','edit settings', 'show blogs', 'edit blogs', 'add blogs'
             
 
         ];

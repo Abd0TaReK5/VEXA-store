@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use App\Models\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
@@ -24,14 +25,10 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        // dd('وصل');
         $request->authenticate();
-
-        // dd('وصل هنا');
-
         $request->session()->regenerate();
-
-        return redirect()->intended(route('dashboard', absolute: false))->with('failed','invalid credentials,please try again');
+        $user=User::get();
+        return redirect()->intended(route('dashboard',compact('user'), absolute: false))->with('failed','invalid credentials,please try again');
     }
 
     /**

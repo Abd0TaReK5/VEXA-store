@@ -15,6 +15,8 @@
 
         
     @foreach($users as $user)
+        
+        @continue($user->name === 'root')
             <div class="user-card">
                 <div class="card-top">
                     <h4>{{$user->name}}</h4>
@@ -102,6 +104,7 @@
             <input type="hidden" name="id" id="selectedUserId">
 
             @foreach($roles as $role)
+                @continue($role->name === 'root' && auth()->user()->name !== 'root')
                 <label class="permission-card">
                     <input type="radio"
                            name="role_id"

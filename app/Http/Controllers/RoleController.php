@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Permission;
-use App\Models\Role;
+// use App\Models\Role;
+use Spatie\Permission\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
@@ -26,11 +27,10 @@ class RoleController extends Controller
         $permissions = Permission::with('roles')->paginate(12);
         // $names = $users->name;
         $roles = Role::with('permissions')->get();
-        // $permission = Permission::all();
-      
+        $user=User::get();
         
         return view('themes.default.back.dashboard.permission.role',
-        compact('roles','permissions'));
+        compact('roles','permissions','user'));
         
    
     
@@ -50,16 +50,13 @@ class RoleController extends Controller
             'role_name' => 'required|string|max:255',
             
         ]);
-
+        
         $role = Role::create([
             'name' => $request->role_name,
             'guard_name' => 'web'
-        ]);
-
-        event(new Registered($role));
-   
-
-        // Auth::login($role);
+            ]);
+               
+        $role->permissions()->sync($request->permissions ?? []);
 
         return response()->json([
         'success' => true,

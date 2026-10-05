@@ -15,6 +15,7 @@
 
         
     @foreach($roles as $role)
+        @continue($role->name === 'root' && auth()->user()->name !== 'root')
             <div class="user-card">
                 <div class="card-top">
                     <h4>{{$role->name}}</h4>

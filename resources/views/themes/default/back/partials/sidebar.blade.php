@@ -12,7 +12,7 @@
                         <span class="count bg-success"></span>
                     </div>
                     <div class="profile-name">
-                        <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
+                        <h5 class="mb-0 font-weight-normal">123</h5>
                         <span>Gold Member</span>
                     </div>
                 </div>
@@ -84,6 +84,7 @@
               <span class="menu-title">Form Elements</span>
             </a>
           </li>
+          @can('show blog')
           <li class="nav-item menu-items mb-2">
             <a class="nav-link" href="{{route ('blog')}}">
               <span class="menu-icon">
@@ -92,6 +93,7 @@
               <span class="menu-title">Blog</span>
             </a>
           </li>
+          @endcan
           <li class="nav-item menu-items mb-2">
             <a class="nav-link" href="{{route ('tables')}}">
               <span class="menu-icon">
@@ -150,14 +152,16 @@
               <span class="menu-title"> Role Management</span>
             </a>
           </li>
-          <li class="nav-item menu-items mb-2">
-            <a class="nav-link" href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation">
-              <span class="menu-icon">
-                <i class="mdi mdi-settings"></i>   
-              </span>
-              <span class="menu-title">Settings</span>
-            </a>
-          </li>
+          @can('show settings')
+            <li class="nav-item menu-items mb-2">
+              <a class="nav-link" href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation">
+                <span class="menu-icon">
+                  <i class="mdi mdi-settings"></i>   
+                </span>
+                <span class="menu-title">Settings</span>
+              </a>
+            </li>
+          @endcan
           <li class="nav-item menu-items mb-2">
             <a class="nav-link" href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation">
               <span class="menu-icon">
