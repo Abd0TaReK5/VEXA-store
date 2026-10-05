@@ -1,0 +1,632 @@
+/*********************
+Permission page
+**********************/
+.users-dashboard {
+    padding: 60px 0;
+    background: #f9f7f4;
+    min-height: 100vh;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.dashboard-header h2 {
+    font-size: 28px;
+    color: #222;
+}
+
+.btn btn-primary create-user {
+    background: #111;
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.create-user-btn:hover {
+    background: #b45309;
+}
+
+.users-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.user-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.user-card:hover {
+    transform: translateY(-5px);
+}
+
+.role {
+    display: inline-block;
+    margin: 10px 0;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.role.admin {
+    background: #111;
+    color: #fff;
+}
+
+.role.user {
+    background: #ddd;
+}
+
+.card-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.card-actions button {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    background: transparent;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.card-actions button:hover {
+    background: #111;
+    color: #fff;
+}
+
+/* Model pop up windows */
+
+
+/* Overlay */
+/* نخلي المودال مخفية افتراضياً */
+/* Overlay */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+/* Modal Box */
+.modal-box {
+    background: linear-gradient(145deg, #1e293b, #0f172a);
+    padding: 40px;
+    width: 450px;
+    border-radius: 16px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+    color: #fff;
+    position: relative;
+    animation: popUp 0.25s ease;
+}
+
+/* Animation */
+@keyframes popUp {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-box h3 {
+    margin: 0;
+    margin-bottom: 8px;
+}
+
+.modal-subtitle {
+    color: #9ca3af;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+/* Close */
+.close-btn {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: #aaa;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.close-btn:hover {
+    color: #fff;
+}
+
+/* Role options spacing */
+.role-options {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* Role card */
+.role-card {
+    flex: 1;
+    background: #111827;
+    padding: 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 1px solid transparent;
+}
+
+.role-card:hover {
+    background: #1f2937;
+}
+
+/* Selected */
+.role-card.active {
+    border: 1px solid #1f8ef1;
+    box-shadow: 0 0 15px rgba(31, 142, 241, 0.3);
+}
+
+/* Text inside role */
+.role-card h4 {
+    margin: 0;
+    margin-bottom: 6px;
+}
+
+.role-card span {
+    font-size: 13px;
+    color: #9ca3af;
+}
+
+/* Next button (نفس permissions style) */
+.next-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: #111827;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.next-btn:hover {
+    background: #1f2937;
+} 
+
+
+
+.users-section {
+    padding: 40px;
+}
+
+.users-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.users-header h2 {
+    color: #fff;
+    font-size: 24px;
+}
+
+.create-btn {
+    background: linear-gradient(135deg, #1f8ef1, #3358f4);
+    border: none;
+    padding: 10px 18px;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.create-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.users-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.user-card {
+    background: linear-gradient(145deg, #1e293b, #0f172a);
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    transition: 0.3s;
+}
+
+.user-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-top h4 {
+    color: #fff;
+    margin: 0;
+}
+
+.role-badge {
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 20px;
+}
+
+.role-badge.admin {
+    background: rgba(0, 255, 150, 0.15);
+    color: #00ff95;
+}
+
+.role-badge.user {
+    background: rgba(0, 123, 255, 0.15);
+    color: #1f8ef1;
+}
+
+.permissions-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #111827;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.permissions-btn:hover {
+    background: #1f2937;
+}
+/* Disable button */
+.next-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Steps */
+.modal-step {
+    display: none;
+    animation: fadeSlide 0.3s ease;
+}
+
+.modal-step.active {
+    display: block;
+}
+
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Form styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #9ca3af;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #111827;
+    color: #fff;
+}
+
+.form-group input:focus {
+    outline: 1px solid #1f8ef1;
+}
+
+
+.confirm-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: #111827;
+    padding: 25px;
+    border-radius: 14px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    display: none;
+    z-index: 10000;
+    animation: popConfirm 0.2s ease forwards;
+}
+
+@keyframes popConfirm {
+    to {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* sweet alert pop up window*/
+.swal2-container {
+    z-index: 9999 !important; /* خليها فوق أي حاجة */
+}
+
+
+
+/* Modal Base */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content (Vertical / Tall) */
+.modal-content.vertical {
+    background-color: #111827;
+    color: #fff;
+    padding: 25px 30px;
+    width: 400px;
+    max-height: 80vh;
+    overflow-y: auto;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+}
+
+.modal-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+/* Close button */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Permissions items */
+.permission {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #1f2937;
+}
+
+.permission:last-child {
+    border-bottom: none;
+}
+
+.options label {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+/* Buttons container */
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.permissions-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background: #111827;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.permissions-btn:hover {
+    background: #1f2937;
+}
+
+
+
+#submitBtn {
+    position: relative;
+    padding: 10px 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+#submitBtn .spinner svg {
+    width: 20px;
+    height: 20px;
+}
+
+
+/* Sweet alert */
+
+
+/* ===== Dark SweetAlert Style (Match Modal Theme) ===== */
+
+.dark-swal-popup {
+    background: linear-gradient(145deg, #1e293b, #0f172a) !important;
+    color: #fff !important;
+    border-radius: 16px !important;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.6) !important;
+    padding: 30px !important;
+    animation: popUp 0.25s ease;
+}
+
+.dark-swal-title {
+    color: #fff !important;
+}
+
+.dark-swal-text {
+    color: #9ca3af !important;
+    font-size: 14px;
+}
+
+/* Confirm Button */
+.dark-swal-btn {
+    background: linear-gradient(135deg, #1f8ef1, #3358f4) !important;
+    border: none !important;
+    padding: 10px 18px !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    transition: 0.3s !important;
+}
+
+.dark-swal-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+/* خلي الايقونة تمشي مع اللون */
+.swal2-success-ring {
+    border-color: #1f8ef1 !important;
+}
+
+/* ===== Permissions list ===== */
+.permissions-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0 24px;
+}
+
+/* ===== Card ===== */
+.permission-card {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    cursor: pointer;
+    user-select: none;
+    transition: background .2s ease, border-color .2s ease,
+                box-shadow .2s ease, transform .15s ease;
+}
+
+.permission-card:hover {
+    background: rgba(56, 189, 248, 0.08);
+    border-color: rgba(56, 189, 248, 0.35);
+    transform: translateY(-1px);
+}
+
+/* ===== Hide native checkbox & build custom one ===== */
+.permission-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    flex-shrink: 0;
+    display: grid;
+    place-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+/* the checkmark */
+.permission-checkbox::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    transform: scale(0);
+    transition: transform .15s ease-in-out;
+    background: #fff;
+    clip-path: polygon(14% 44%, 0 59%, 40% 100%, 100% 20%, 85% 6%, 39% 70%);
+}
+
+.permission-checkbox:checked {
+    background: linear-gradient(135deg, #38bdf8, #3b82f6);
+    border-color: transparent;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.55);
+}
+
+.permission-checkbox:checked::before {
+    transform: scale(1);
+}
+
+.permission-checkbox:focus-visible {
+    outline: 2px solid rgba(56, 189, 248, 0.6);
+    outline-offset: 2px;
+}
+
+/* ===== Name ===== */
+.permission-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.75);
+    text-transform: capitalize;
+    transition: color .2s ease;
+}
+
+/* ===== Selected card state (highlight the whole card) ===== */
+.permission-card:has(.permission-checkbox:checked) {
+    background: rgba(56, 189, 248, 0.12);
+    border-color: rgba(56, 189, 248, 0.6);
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.15);
+}
+
+.permission-card:has(.permission-checkbox:checked) .permission-name {
+    color: #fff;
+}
+
+/* ===== Empty state ===== */
+.no-permissions {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+}
