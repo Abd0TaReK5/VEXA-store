@@ -192,3 +192,69 @@ function closeEditRoleModal() {
     document.getElementById('editRoleForm').reset();          // ← editRoleForm مش permissionsForm
     document.getElementById('selectedRoleId').value = '';
 }
+
+function deleteRoleModal(roleId) {
+    const btn = document.getElementById(`roleDeleteBtn-${roleId}`);
+    if (!btn) return console.error(`roleDeleteBtn not found`);
+
+    document.getElementById('deleteRoleId').value = roleId;
+    document.getElementById('deleteRoleName').textContent = btn.dataset.name;
+
+    const errorEl = document.getElementById('deleteRoleError');
+    errorEl.style.display = 'none';
+    errorEl.textContent = '';
+
+    const confirmBtn = document.getElementById('deleteRoleConfirm');
+    confirmBtn.disabled = false;
+    confirmBtn.textContent = 'Delete';
+
+    document.getElementById('deleteRoleModal').style.display = 'flex';
+}
+
+function closeDeleteRoleModal() {
+    document.getElementById('deleteRoleModal').style.display = 'none';
+}
+
+async function confirmDeleteRole() {
+    const roleId     = document.getElementById('deleteRoleId').value;
+    const errorEl    = document.getElementById('deleteRoleError');
+    const confirmBtn = document.getElementById('deleteRoleConfirm');
+
+    confirmBtn.disabled = true;
+    confirmBtn.textContent = 'Loading..';
+    errorEl.style.display = 'none';
+
+    try {
+        const res = await fetch(`/roles/${roleId}`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                'Accept': 'application/json',
+            },
+        });
+
+        const data = await res.json().catch(() => ({}));
+
+        if (!res.ok || !data.success) {
+            throw new Error(data.message || 'Cannot delete role.');
+        }
+
+        closeDeleteRoleModal();
+
+        document.getElementById(`roleDeleteBtn-${roleId}`)
+            ?.closest('.user-card')
+            ?.remove();
+
+        Swal.fire({ ...swalBase, icon: 'success', title: 'Success', text: data.message });
+
+    } catch (e) {
+        errorEl.textContent = e instanceof TypeError
+            ? 'Connection error.'
+            : e.message;
+        errorEl.style.display = 'block';
+
+    errorEl.style.display = 'block';
+    confirmBtn.disabled = false;
+    confirmBtn.textContent = 'Delete';
+}
+}

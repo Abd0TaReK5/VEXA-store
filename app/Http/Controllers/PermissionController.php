@@ -25,7 +25,7 @@ class PermissionController extends Controller
 
         $users = User::with('role')->paginate(12);
         // $names = $users->name;
-        $roles = Role::with('users')->get();
+        $roles = Role::where('name','!=','root')->with('users')->get();
         // $permission = Permission::all();
         
         
@@ -50,14 +50,14 @@ class PermissionController extends Controller
         public function store(Request $request): JsonResponse
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+            'name' => 'required|string|max:12',
+            'email' => 'required|string|email|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->email,
+            'email' => $request->email, 
             'password' => Hash::make($request->password),
         ]);
 

@@ -136,6 +136,7 @@
               </ul>
             </div>
           </li>
+          @can('show user managment')
           <li class="nav-item menu-items mb-2">
             <a class="nav-link" href="{{route('permission')}}">
               <span class="menu-icon">
@@ -144,6 +145,8 @@
               <span class="menu-title"> User Management</span>
             </a>
           </li>
+          @endcan
+          @can('show role managment')
           <li class="nav-item menu-items mb-2">
             <a class="nav-link" href="{{route('role')}}">
               <span class="menu-icon">
@@ -152,6 +155,7 @@
               <span class="menu-title"> Role Management</span>
             </a>
           </li>
+          @endcan
           @can('show settings')
             <li class="nav-item menu-items mb-2">
               <a class="nav-link" href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation">

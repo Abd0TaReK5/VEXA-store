@@ -38,17 +38,6 @@ Permission page
     gap: 25px;
 }
 
-.user-card {
-    background: #fff;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    transition: 0.3s;
-}
-
-.user-card:hover {
-    transform: translateY(-5px);
-}
 
 .role {
     display: inline-block;
@@ -68,9 +57,9 @@ Permission page
 }
 
 .card-actions {
-    margin-top: 15px;
     display: flex;
     gap: 10px;
+    align-items: stretch;
 }
 
 .card-actions button {
@@ -175,7 +164,7 @@ Permission page
 }
 
 .role-card:hover {
-    background: #1f2937;
+    transform: translateY(-5px);
 }
 
 /* Selected */
@@ -263,6 +252,15 @@ Permission page
     transform: translateY(-5px);
 }
 
+.role-card {
+    background: linear-gradient(145deg, #1e293b, #0f172a);
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    transition: 0.3s;
+}
+
+
 .card-top {
     display: flex;
     justify-content: space-between;
@@ -292,6 +290,16 @@ Permission page
 }
 
 .permissions-btn {
+    width: 49%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #111827;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.role-btn {
     width: 100%;
     padding: 10px;
     border-radius: 8px;
@@ -305,6 +313,28 @@ Permission page
 .permissions-btn:hover {
     background: #1f2937;
 }
+.role-btn:hover {
+    background: #1f2937;
+}
+
+.delete-role-btn {
+    width: 49%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #111827;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s, color .2s, transform .2s, box-shadow .2s;
+}
+
+.delete-role-btn:hover {
+    background: #ef4444;
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, .3);
+}
+
 /* Disable button */
 .next-btn:disabled {
     opacity: 0.4;
@@ -456,21 +486,6 @@ Permission page
     justify-content: space-between;
     margin-top: 20px;
 }
-
-.permissions-btn {
-    padding: 10px 20px;
-    border-radius: 8px;
-    border: none;
-    background: #111827;
-    color: #fff;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.permissions-btn:hover {
-    background: #1f2937;
-}
-
 
 
 #submitBtn {
@@ -630,3 +645,16 @@ Permission page
     color: rgba(255, 255, 255, 0.5);
     font-size: 14px;
 }
+
+
+.confirm-box h3 { margin: 0 0 10px; }
+.confirm-box p { margin: 0 0 16px; color: #aab6c8; }
+.confirm-box strong { color: #fff; }
+.confirm-error { color: #f87171 !important; }
+.confirm-actions { display: flex; gap: 10px; justify-content: flex-end; }
+.confirm-actions button {
+    padding: 10px 18px; border: 0; border-radius: 10px; cursor: pointer; font: inherit;
+}
+.confirm-cancel { background: #0f1623; color: #e6edf7; }
+.confirm-delete { background: #ef4444; color: #fff; }
+.confirm-delete:disabled { opacity: .6; cursor: wait; }

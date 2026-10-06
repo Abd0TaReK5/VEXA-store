@@ -15,8 +15,8 @@
 
         
     @foreach($roles as $role)
-        @continue($role->name === 'root' && auth()->user()->name !== 'root')
-            <div class="user-card">
+        
+            <div class="role-card">
                 <div class="card-top">
                     <h4>{{$role->name}}</h4>
                     <span class="role-badge admin">Role</span>
@@ -28,6 +28,18 @@
                     onclick="editRoleModal({{ $role->id }})">
                     edit Role
                 </button>
+                
+
+                @can('delete roles')
+                        <button class="delete-role-btn" 
+                        id="roleDeleteBtn-{{ $role->id }}"
+                        data-name="{{ $role->name }}"
+                        onclick="deleteRoleModal({{ $role->id }})">
+                        delete Role
+                        </button>
+                   
+                @endcan
+
             </div>
     @endforeach 
 
@@ -104,10 +116,6 @@
     </div>
 {{-- End first pop up window --}}
 
-
-
-
-
             
 <div id="permissionsModal" class="modal-overlay">
     <div class="modal-box">
@@ -157,14 +165,26 @@
 
     </div>   {{-- يقفل .modal-box --}}
 </div>        
+
+
+<div id="deleteRoleModal" class="modal-overlay" style="display:none">
+    <div class="modal-box">
+        <h3>Delete Role</h3>
+        <p>Are you sure you want to delete the role <strong id="deleteRoleName"></strong>?</p>
+                <p id="deleteRoleError" class="confirm-error" style="display:none"></p>
+        
+            <div>
+                
+            </div>
+            <input type="hidden" id="deleteRoleId">
+            <div class="confirm-actions">
+                <button type="button" class="confirm-cancel" onclick="closeDeleteRoleModal()">Cancel</button>
+                <button type="submit" class="confirm-delete" id="deleteRoleConfirm" onclick="confirmDeleteRole()">Delete</button>
+            </div>
+      
+        </div>
+</div>
 </section>
-
-{{-- End permissions window --}}
-<!-- User Modal -->
-<!-- Permissions Modal -->
-<!-- Permissions Modal -->
-
-{{-- End permissions window --}}
 
 
 

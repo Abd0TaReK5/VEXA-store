@@ -11,34 +11,27 @@
         </button>
     </div>
 
-    <div class="users-grid">
+    <div class="users-grid">      
+        @foreach($users as $user)
 
-        
-    @foreach($users as $user)
-        
-        @continue($user->name === 'root')
-            <div class="user-card">
-                <div class="card-top">
-                    <h4>{{$user->name}}</h4>
-                    <span class="role-badge user">{{$user->role->name ?? 'No Role'}}</span>
+                <div class="user-card">
+                    <div class="card-top">
+                        <h4>{{$user->name}}</h4>
+                        <span class="role-badge user">{{$user->role->name ?? 'No Role'}}</span>
+                    </div>
+
+                    <button type="button"
+                        class="role-btn"
+                        id="roleBtn-{{ $user->id }}"
+                        data-role-id="{{ $user->role_id }}"
+                        data-user-name="{{ $user->name }}"
+                        onclick="openModal({{ $user->id }})">
+                    Select Role
+                    </button>
                 </div>
-
-                <button type="button"
-                    class="permissions-btn"
-                    id="roleBtn-{{ $user->id }}"
-                    data-role-id="{{ $user->role_id }}"
-                    data-user-name="{{ $user->name }}"
-                    onclick="openModal({{ $user->id }})">
-                Select Role
-</button>
-            </div>
-    @endforeach 
-            
-       
-
+        @endforeach 
+                  
     </div>
-
-
 
 {{-- Start first pop up window --}}
 <div class="modal-overlay" id="Creationmodal">
@@ -58,7 +51,7 @@
                 @method('put')
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" name="name" placeholder="Enter user's name">
+                    <input type="text" name="name" maxlength="12" placeholder="Enter user's name">
                 </div>
 
                 <div class="form-group">
@@ -70,7 +63,7 @@
                     <input type="password" name="password" placeholder="Enter user's password">
                 </div>
                 <div class="form-group">
-                    <label>password</label>
+                    <label>Confirm password</label>
                     <input type="password" name="password_confirmation" placeholder="Confirm user's password">
                 </div>
 
@@ -104,7 +97,6 @@
             <input type="hidden" name="id" id="selectedUserId">
 
             @foreach($roles as $role)
-                @continue($role->name === 'root' && auth()->user()->name !== 'root')
                 <label class="permission-card">
                     <input type="radio"
                            name="role_id"
@@ -132,17 +124,5 @@
     </div>
 </div>   
 </section>
-
-{{-- End permissions window --}}
-<!-- User Modal -->
-<!-- Permissions Modal -->
-<!-- Permissions Modal -->
-
-{{-- End permissions window --}}
-
-
-
-
-
 
 @endsection

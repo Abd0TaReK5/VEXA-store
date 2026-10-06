@@ -97,8 +97,8 @@ Route::middleware('auth')->group(function () {
     
     
     //User managment page
-    Route::get('user-management', [ControllersPermissionController::class,'index'])->name('permission');
-    Route::get('role-management', [RoleController::class,'index'])->name('role');
+    Route::get('user-management', [ControllersPermissionController::class,'index'])->middleware('can:show user management')->name('permission');
+    Route::get('role-management', [RoleController::class,'index'])->middleware('can:show role management')->name('role');
     Route::put('role-create', [ControllersPermissionController::class,'store'])->name('user_create');
     Route::put('role-update', [RoleController::class,'update'])->name('role_change');
     // Route::get('edit-permission', [ControllersPermissionController::class,'showpermissions'])->name('permission');
@@ -107,6 +107,7 @@ Route::middleware('auth')->group(function () {
     Route::put('role-management/update-permissions}', [ControllersPermissionController::class, 'update'])->name('update_permission');
     // Route::get('/users/{id}/permissions', [ControllersPermissionController::class,'show'])->name('update_permission');
     Route::get('/users/{id}/permissions', [ControllersPermissionController::class, 'show']);
+    Route::delete('/roles/{role}', [RoleController::class, 'destroy'])->name('role_destroy');
 
     // // front pages
 
